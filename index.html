@@ -4,48 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pour Victoria ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            font-family: 'Arial', sans-serif;
-            background-color: #ffe6e6;
+            min-height: 100vh; /* Utilise min-height pour permettre le défilement si la lettre est longue */
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(to bottom right, #ffe6f0, #ffccf0); /* Dégradé doux */
             margin: 0;
+            padding: 20px;
+            text-align: center;
+            overflow: hidden; /* Pour éviter les barres de défilement quand le bouton Non bouge */
+        }
+        .letter-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 700px;
+            width: 90%;
+            text-align: left;
+            position: relative;
+            z-index: 1; /* Pour que la lettre soit au-dessus des cœurs */
+        }
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            color: #d63384;
+            font-size: 3.5em; /* Plus grand pour l'effet "lettre" */
+            margin-bottom: 20px;
             text-align: center;
         }
-        h1 { color: #d63384; }
-        .buttons { margin-top: 20px; }
+        p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2em;
+            color: #d63384;
+            text-align: right;
+            margin-top: 30px;
+        }
+        .buttons { 
+            margin-top: 30px; 
+            text-align: center;
+            position: relative; /* Pour positionner les boutons à l'intérieur de la lettre */
+            z-index: 2;
+        }
         button {
-            padding: 10px 20px;
-            font-size: 18px;
+            padding: 12px 25px;
+            font-size: 20px;
             cursor: pointer;
             border: none;
-            border-radius: 5px;
-            margin: 10px;
-            transition: all 0.2s ease;
+            border-radius: 30px; /* Bords plus arrondis */
+            margin: 15px;
+            transition: all 0.3s ease; /* Transition plus douce */
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        #yesBtn { background-color: #28a745; color: white; }
-        #noBtn { background-color: #dc3545; color: white; position: relative; }
+        #yesBtn { 
+            background-color: #ff69b4; /* Rose vif */
+            color: white; 
+            min-width: 120px; /* Taille minimale */
+        }
+        #noBtn { 
+            background-color: #dc3545; 
+            color: white; 
+            position: absolute; /* Position absolue pour le faire fuir */
+            left: 50%; /* Centré initialement */
+            transform: translateX(-50%); /* Ajustement pour centrer */
+            min-width: 80px; /* Taille minimale */
+        }
         .hidden { display: none; }
-        img { max-width: 300px; border-radius: 15px; }
+        .success-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 700px;
+            width: 90%;
+            text-align: center;
+        }
+        .success-container h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3em;
+            color: #d63384;
+        }
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 15px; 
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Effet de cœurs qui tombent */
+        .heart {
+            position: absolute;
+            background-color: #ff69b4;
+            transform: rotate(-45deg);
+            animation: fall linear infinite;
+            pointer-events: none; /* Pour que ça n'interfère pas avec les clics */
+            opacity: 0; /* Caché au début */
+        }
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #ff69b4;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -50%;
+            left: 0;
+        }
+        .heart::after {
+            top: 0;
+            left: 50%;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(-45deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="question">
-        <h1>Victoria, would you be my valentine? 🌹</h1>
+    <div id="question" class="letter-container">
+        <h1>Ma Chère Victoria,</h1>
+        <p>
+            En ce jour spécial, mon cœur déborde d'une douce anticipation. Chaque sourire que tu m'offres illumine mes journées, et chaque instant passé à tes côtés est un trésor.
+        </p>
+        <p>
+            Je me suis souvent demandé ce que l'avenir nous réservait, mais une chose est certaine : le partager avec toi serait la plus belle des aventures.
+        </p>
+        <p>
+            Alors, avec une touche d'espoir et tout mon amour...
+        </p>
         <div class="buttons">
-            <button id="yesBtn">Oui !</button>
-            <button id="noBtn">Non</button>
+            <button id="yesBtn">Oui, avec joie ! ❤️</button>
+            <button id="noBtn">Non...</button>
         </div>
+        <p class="signature">Ton Valentin (ou futur Valentin 😉)</p>
     </div>
 
-    <div id="success" class="hidden">
+    <div id="success" class="hidden success-container">
         <h1>YAY ! ❤️ Je savais que tu dirais oui !</h1>
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp6Ym1ybmZqZnd4eGZqZnd4Znd4Znd4Znd4Znd4Znd4Znd4Znd4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/c76IJLufpN61i/giphy.gif" alt="Happy GIF">
+        <p>Tu as fait de moi le plus heureux des hommes !</p>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp6Ym1ybmZqZnd4eGZqZnd4Znd4Znd4Znd4Znd4Znd4Znd4Znd4JmVwPXYxX2ludGVybmFsc2J5X2lkJmN0PWc/c76IJLufpN61i/giphy.gif" alt="Happy GIF">
     </div>
 
     <script>
@@ -53,36 +167,133 @@
         const noBtn = document.getElementById('noBtn');
         const questionDiv = document.getElementById('question');
         const successDiv = document.getElementById('success');
+        const body = document.body;
 
-        let yesFontSize = 18;
+        let yesScale = 1; // Facteur d'agrandissement pour le bouton Oui
+        let noMinSize = 0.6; // Taille minimale du bouton Non (60%)
 
-        noBtn.addEventListener('click', () => {
-            alert("Wrong answer! 😉");
-            
-            // Faire grossir le bouton OUI
-            yesFontSize += 20;
-            yesBtn.style.fontSize = yesFontSize + "px";
-            yesBtn.style.padding = (yesFontSize / 2) + "px " + yesFontSize + "px";
+        // Fonction pour faire fuir le bouton Non
+        noBtn.addEventListener('mouseover', () => {
+            // Augmenter la taille du bouton Oui
+            yesScale += 0.1; // Augmente un peu plus
+            yesBtn.style.transform = `scale(${yesScale})`;
+            yesBtn.style.boxShadow = `0 6px 15px rgba(255,105,180,0.4)`; // Ombre rose
 
-            // Faire rétrécir le bouton NON
-            let currentNoSize = parseInt(window.getComputedStyle(noBtn).fontSize);
-            if (currentNoSize > 5) {
-                noBtn.style.fontSize = (currentNoSize - 2) + "px";
-                noBtn.style.padding = "5px 10px";
+            // Réduire la taille du bouton Non
+            let currentNoScale = parseFloat(noBtn.style.transform.replace('scale(', '').replace(')', '')) || 1;
+            if (currentNoScale > noMinSize) {
+                noBtn.style.transform = `scale(${currentNoScale - 0.1})`;
+            } else {
+                noBtn.style.transform = `scale(${noMinSize})`; // Ne descend pas en dessous de la taille minimale
             }
 
-            // Déplacer le bouton NON de façon aléatoire
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            noBtn.style.position = 'absolute';
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
+            // Déplacer le bouton Non de façon aléatoire
+            const maxX = window.innerWidth - noBtn.offsetWidth;
+            const maxY = window.innerHeight - noBtn.offsetHeight;
+            
+            // On veut que le bouton s'éloigne de la souris
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+
+            let newX = Math.random() * maxX;
+            let newY = Math.random() * maxY;
+
+            // Essayer de déplacer loin de la souris, mais rester dans l'écran
+            if (mouseX < window.innerWidth / 2) { // Souris à gauche
+                newX = Math.random() * (maxX / 2) + (maxX / 2); // Aller vers la droite
+            } else { // Souris à droite
+                newX = Math.random() * (maxX / 2); // Aller vers la gauche
+            }
+
+            if (mouseY < window.innerHeight / 2) { // Souris en haut
+                newY = Math.random() * (maxY / 2) + (maxY / 2); // Aller vers le bas
+            } else { // Souris en bas
+                newY = Math.random() * (maxY / 2); // Aller vers le haut
+            }
+
+            // S'assurer que les boutons ne sortent pas du .letter-container
+            const letterRect = questionDiv.getBoundingClientRect();
+            const btnWidth = noBtn.offsetWidth * (currentNoScale > noMinSize ? currentNoScale : noMinSize);
+            const btnHeight = noBtn.offsetHeight * (currentNoScale > noMinSize ? currentNoScale : noMinSize);
+
+            // Coordonnées relatives à la lettre
+            let relativeX = newX - letterRect.left;
+            let relativeY = newY - letterRect.top;
+
+            // S'assurer que le bouton reste dans la lettre
+            if (relativeX < 0) relativeX = 0;
+            if (relativeY < 0) relativeY = 0;
+            if (relativeX + btnWidth > letterRect.width) relativeX = letterRect.width - btnWidth;
+            if (relativeY + btnHeight > letterRect.height) relativeY = letterRect.height - btnHeight;
+
+
+            noBtn.style.left = `${relativeX}px`;
+            noBtn.style.top = `${relativeY}px`;
+            noBtn.style.position = 'absolute'; // Assurez-vous que c'est toujours absolu
+        });
+        
+        // Réinitialiser la position du bouton NON quand la souris le quitte (pour un meilleur effet)
+        noBtn.addEventListener('mouseout', () => {
+             // Revenir à une position plus centrée après avoir fui
+            noBtn.style.left = '50%';
+            noBtn.style.top = 'auto'; // Réinitialiser le top
+            noBtn.style.transform = 'translateX(-50%)'; // Réinitialiser la taille
+            noBtn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
         });
 
+
+        // Clic sur NON : afficher "Wrong answer" (modifié pour une alerte plus douce)
+        noBtn.addEventListener('click', () => {
+            // Plutôt qu'un alert, on peut afficher un message temporaire
+            const wrongAnswerText = document.createElement('p');
+            wrongAnswerText.textContent = "Oh non ! Essaie encore ! 😉";
+            wrongAnswerText.style.color = '#dc3545';
+            wrongAnswerText.style.fontWeight = 'bold';
+            wrongAnswerText.style.marginTop = '10px';
+            wrongAnswerText.style.opacity = '0';
+            wrongAnswerText.style.transition = 'opacity 0.5s ease-out';
+            wrongAnswerText.style.position = 'absolute';
+            wrongAnswerText.style.left = '50%';
+            wrongAnswerText.style.transform = 'translateX(-50%)';
+            wrongAnswerText.style.bottom = '10px';
+            questionDiv.appendChild(wrongAnswerText);
+
+            setTimeout(() => {
+                wrongAnswerText.style.opacity = '1';
+            }, 10); // Petit délai pour la transition
+
+            setTimeout(() => {
+                wrongAnswerText.style.opacity = '0';
+                wrongAnswerText.addEventListener('transitionend', () => wrongAnswerText.remove());
+            }, 2500); // Disparaît après 2.5 secondes
+        });
+
+
+        // Clic sur OUI : afficher la page de succès
         yesBtn.addEventListener('click', () => {
             questionDiv.classList.add('hidden');
             successDiv.classList.remove('hidden');
+            createFallingHearts(); // Lancer les cœurs quand elle dit oui
         });
+
+
+        // Fonction pour créer des cœurs qui tombent
+        function createFallingHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                const size = Math.random() * 20 + 10; // Cœurs de 10 à 30px
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                heart.style.left = `${Math.random() * 100}vw`; // Position horizontale aléatoire
+                heart.style.animationDuration = `${Math.random() * 4 + 3}s`; // Durée de chute aléatoire
+                heart.style.animationDelay = `${Math.random() * 0.5}s`; // Délai aléatoire
+                body.appendChild(heart);
+
+                // Supprimer le cœur après son animation pour ne pas surcharger le DOM
+                heart.addEventListener('animationend', () => heart.remove());
+            }, 200); // Un nouveau cœur toutes les 200ms
+        }
     </script>
 </body>
 </html> 
