@@ -37,6 +37,14 @@
             margin: 0 0 20px 0;
         }
 
+        h1 {
+            font-family: 'Poppins', sans-serif; /* On change la police ici */
+            font-weight: 600;
+            font-size: 2.2rem;
+            color: #ff4d94;
+            text-transform: none;
+        }
+
         p {
             color: #555;
             line-height: 1.6;
@@ -131,7 +139,7 @@
         </div>
 
         <div id="success">
-            <h1>Génial ! ❤️</h1>
+            <h1>C'est merveilleux ! ❤️</h1>
             <p>Je savais que tu ferais le bon choix ! J'ai tellement hâte de fêter ça avec toi.</p>
             
             <a class="calendar-btn" href="https://www.google.com/calendar/render?action=TEMPLATE&text=Dîner+avec+mon+amoureux+❤️&dates=20260214T200000/20260214T230000&details=Soirée+surprise+pour+Victoria" target="_blank">
@@ -186,7 +194,7 @@
 
         // Fonction pour la pluie de cœurs
         function startHearts() {
-            const emojis = ['❤️', '💖', '🌹', '✨', '🌸'];
+            const emojis = ['❤️', '💖', '🌹', '✨', '👩🏻‍🦰','👩🏻‍🦰'];
             setInterval(() => {
                 const heart = document.createElement('div');
                 heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
